@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* 使用 CSS 將文本置中 */
+      .center-text {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center-text">
+      <p>下個月的壽星是誰？</p>
+    </div>
+
+    <div class="center-text">
+      <input type="text" id="answer" placeholder="請輸入答案" />
+      <button onclick="submitAnswer()">送出</button>
+    </div>
+
+    <script>
+      function submitAnswer() {
+        // 獲取輸入框的值
+        var answer = document.getElementById("answer").value;
+
+        // 在這裡處理答案，例如顯示答案或向後端發送答案請求
+        // 這部分需要使用 JavaScript 或其他前端和後端技術來實現
+        // 這裡只是一個示例，您可以根據實際需求進行定義
+        alert("您輸入的答案是：" + answer);
+      }
+    </script>
+  </body>
+</html>

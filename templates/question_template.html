@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>題目</title>
+    <style>
+      /* 將頁面內容在水平和垂直方向上置中 */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+      }
+
+      /* 左對齊文本 */
+      p {
+        word-wrap: break-word;
+        width: 300px;
+      }
+      h1,
+      input[type="text"] {
+        text-align: left;
+      }
+
+      input[type="text"],
+      input[type="submit"] {
+        margin: 10px 0;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      img {
+        width: 300px;
+        max-height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="text-align: center">
+      {% if hint is not none %}
+      <p>{{ hint }}</p>
+      {% endif %}
+      <h1>題號 {{ question_number }}</h1>
+      <p>{{ question | replace('\n', '<br />') | safe }}</p>
+
+      {% if hidden_question is defined %}
+      <p style="color: white">{{ hidden_question }}</p>
+      {% endif %} {% if question_img_path is defined %}
+      <img src="{{ question_img_path }}" />
+      {% endif %} {% if question_autdio_path is defined %}
+      <audio controls>
+        <source src="{{ question_autdio_path }}" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+      {% endif %}
+
+      <form action="/submit_answer/" method="post">
+        <input type="text" name="answer" placeholder="輸入答案" /><br />
+        <input
+          type="hidden"
+          name="question_code"
+          value="{{ question_code }}"
+        /><br />
+        <input type="submit" value="提交答案" />
+      </form>
+    </div>
+  </body>
+</html>
